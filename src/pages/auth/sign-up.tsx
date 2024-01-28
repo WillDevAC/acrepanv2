@@ -23,30 +23,23 @@ export function SignUp() {
 
         <form className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="managerName">Seu nome: </Label>
+            <Label htmlFor="managerName">Nome</Label>
             <Input id="managerName" type="text" />
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="email">Seu e-mail: </Label>
+            <Label htmlFor="email">Email</Label>
             <Input id="email" type="email" />
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="phone">Seu celular: </Label>
+            <Label htmlFor="phone">Celular</Label>
             <Input id="phone" type="tel" />
           </div>
 
           <Button className="w-full" type="submit">
             Finalizar cadastro
           </Button>
-
-          <p className="px-6 text-center text-sm leading-relaxed text-muted-foreground">
-            Desenvolvido por
-            <a href="#" className="underline pl-1 underline-offset-4">
-              JB MIDIA
-            </a>
-          </p>
         </form>
       </div>
     </>
