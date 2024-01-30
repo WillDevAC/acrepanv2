@@ -1,5 +1,4 @@
 import axios from "axios";
-import Cookies from "js-cookie"; // Import js-cookie library
 
 import { env } from "@/env";
 
