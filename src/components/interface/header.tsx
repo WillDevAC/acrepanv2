@@ -1,5 +1,5 @@
 import { ChevronDown, CircleUser } from "lucide-react";
-import { UpdateAddressDrawer } from "./drawers/update-address";
+import { UpdateAddressDrawer } from "./dialog/update-address";
 
 import { getUserDetails } from "@/api/get-user-details";
 
@@ -14,8 +14,7 @@ export function Header() {
   });
 
   return (
-    <header className="flex flex-col">
-      <section className="bg-white pl-8 pr-5 pt-5 pb-5 h-auto flex items-center justify-between">
+      <header className="bg-white pl-8 pr-5 pt-5 pb-5 h-auto sticky top-0 flex items-center justify-between">
         <div className="flex flex-col">
           <span className="text-gray-400 text-xs pb-1">
             Endereço de entrega
@@ -37,7 +36,6 @@ export function Header() {
         <div className="flex items-center">
           <CircleUser size={23} />
         </div>
-      </section>
-    </header>
+      </header>
   );
 }

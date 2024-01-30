@@ -15,6 +15,16 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+
 import { useMutation, useQueryClient } from "react-query";
 
 import { Button } from "@/components/ui/button";
@@ -81,9 +91,9 @@ export function UpdateAddressDrawer({ children }: UpdateAddressDrawerProps) {
         number: number,
       });
 
-      queryClient.invalidateQueries("get-user-details")
+      queryClient.invalidateQueries("get-user-details");
     } catch (error) {
-      alert('Falha em recuperar dados de usuário.')
+      alert("Falha em recuperar dados de usuário.");
     }
   };
 
@@ -109,15 +119,15 @@ export function UpdateAddressDrawer({ children }: UpdateAddressDrawerProps) {
   };
 
   return (
-    <Drawer>
-      <DrawerTrigger>{children}</DrawerTrigger>
-      <DrawerContent>
-        <DrawerHeader>
-          <DrawerTitle>Definir endereço de entrega</DrawerTitle>
-          <DrawerDescription>
+    <Dialog>
+      <DialogTrigger>{children}</DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Definir endereço de entrega</DialogTitle>
+          <DialogDescription>
             Preencha abaixo o seu endereço de entrega
-          </DrawerDescription>
-        </DrawerHeader>
+          </DialogDescription>
+        </DialogHeader>
         <form
           className="flex flex-col gap-3 p-5"
           onSubmit={handleSubmit(onSubmit)}
@@ -152,13 +162,12 @@ export function UpdateAddressDrawer({ children }: UpdateAddressDrawerProps) {
               />
             </>
           )}
-          <DrawerFooter>
-            <Button type="submit" disabled={loading || isLoading}>
-              {loading ? "Carregando..." : "Salvar"}
-            </Button>
-          </DrawerFooter>
+          <Button type="submit" disabled={loading || isLoading}>
+          {loading ? "Carregando..." : "Salvar"}
+        </Button>
         </form>
-      </DrawerContent>
-    </Drawer>
+        
+      </DialogContent>
+    </Dialog>
   );
 }
