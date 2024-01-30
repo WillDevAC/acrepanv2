@@ -3,9 +3,7 @@ import { useEffect } from "react";
 
 import Cookies from "js-cookie";
 
-
 export function AuthLayout() {
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -17,9 +15,8 @@ export function AuthLayout() {
     }
   }, [navigate]);
 
-
   return (
-    <div className="flex items-center justify-center h-screen w-screen">
+    <div className="flex items-center justify-center h-screen w-screen bg-white">
       <div className="flex flex-col items-center justify-center w-full">
         <Outlet />
       </div>
