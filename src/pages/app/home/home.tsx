@@ -1,11 +1,12 @@
-import Chip from "@/components/ui/chip";
+import { CardWithForm } from "@/components/interface/cards/card-with-form";
+import { FilterSection } from "@/components/interface/sections/filters";
 
 export function HomePage() {
   return (
-    <div className="flex space-x-2">
-      <Chip label="Destaques" />
-      <Chip label="Pães" />
-      <Chip label="Bolos" />
-    </div>
+    <>
+      <FilterSection />
+      <h1 className="text-lg font-bold">Destaques da semana</h1>
+      <CardWithForm/>
+    </>
   );
 }

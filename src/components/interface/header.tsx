@@ -15,7 +15,7 @@ export function Header() {
   });
 
   return (
-    <header className="bg-white pl-8 pr-5 pt-5 pb-5 h-auto sticky top-0 flex items-center justify-between">
+    <header className="bg-white shadow-sm pl-5 pr-5 pt-5 pb-5 h-auto sticky top-0 flex items-center justify-between">
       <div className="flex flex-col">
         <span className="text-gray-400 text-xs pb-1">Endereço de entrega</span>
         {isLoadingUserDetails && <Skeleton className="w-[120px] h-[20px]" />}
