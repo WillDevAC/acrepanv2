@@ -1,5 +1,3 @@
-import { UserCircle } from "lucide-react";
-
 interface Tab {
   id: string;
   label: string;
