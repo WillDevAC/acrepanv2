@@ -5,7 +5,7 @@ import { useEffect } from "react";
 
 import Cookies from "js-cookie";
 import MobileTabBar from "@/components/ui/tab-bar";
-import { Gift, Home, Package2, UserCircle } from "lucide-react";
+import { Gift, Home, Package2 } from "lucide-react";
 
 export function AppLayout() {
   const navigate = useNavigate();
