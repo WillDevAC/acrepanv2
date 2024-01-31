@@ -1,12 +1,20 @@
+import { useState } from "react";
+
+import { HighlightsSection } from "@/components/interface/sections/highlights";
+import { FilteredCategory } from "@/components/interface/sections/filtered-category";
 import { FilterSection } from "@/components/interface/sections/filters";
-import HighlightsSection from "@/components/interface/sections/highlights";
 
 export function HomePage() {
+  const [filterItem, setFilterItem] = useState("destaques");
+
   return (
     <>
-      <FilterSection />
-      <h1 className="text-lg font-bold">Destaques da semana</h1>
-      <HighlightsSection/>
+      <FilterSection setFilterItem={setFilterItem} filterItem={filterItem} />
+      {filterItem === "destaques" ? (
+        <HighlightsSection />
+      ) : (
+        <FilteredCategory itemByFilter={filterItem} />
+      )}
     </>
   );
 }
