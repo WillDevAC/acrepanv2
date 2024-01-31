@@ -1,4 +1,3 @@
-import { CardWithForm } from "@/components/interface/cards/card-with-form";
 import { FilterSection } from "@/components/interface/sections/filters";
 
 export function HomePage() {
