@@ -6,6 +6,7 @@ import { getUserDetails } from "@/api/get-user-details";
 import { useQuery } from "react-query";
 import { Skeleton } from "../ui/skeleton";
 import { Button } from "../ui/button";
+
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 
 export function Header() {
@@ -23,23 +24,25 @@ export function Header() {
           <AvatarFallback>A</AvatarFallback>
         </Avatar>
         <div className="flex flex-col">
-        <span className="text-gray-400 text-xs pb-1">Endereço de entrega</span>
-        {isLoadingUserDetails && <Skeleton className="w-[120px] h-[20px]" />}
+          <span className="text-gray-400 text-xs pb-1">
+            Endereço de entrega
+          </span>
+          {isLoadingUserDetails && <Skeleton className="w-[120px] h-[20px]" />}
 
-        {!isLoadingUserDetails && (
-          <UpdateAddressDrawer>
-            <div className="flex items-center gap-1">
-              <p className="text-gray-600 text-sm">
-                {!userDetails?.address && "Definir seu endereço..."}
-                {userDetails?.address && `${userDetails?.address}`}
-              </p>
-              <ChevronDown size={17} />
-            </div>
-          </UpdateAddressDrawer>
-        )}
+          {!isLoadingUserDetails && (
+            <UpdateAddressDrawer>
+              <div className="flex items-center gap-1">
+                <p className="text-gray-600 text-sm">
+                  {!userDetails?.address && "Definir seu endereço..."}
+                  {userDetails?.address && `${userDetails?.address}`}
+                </p>
+                <ChevronDown size={17} />
+              </div>
+            </UpdateAddressDrawer>
+          )}
+        </div>
       </div>
-      </div>
-      
+
       <div className="flex items-center">
         <Button variant="outline" size="icon">
           <User size={20} />

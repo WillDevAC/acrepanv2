@@ -6,7 +6,6 @@ export function HomePage() {
     <>
       <FilterSection />
       <h1 className="text-lg font-bold">Destaques da semana</h1>
-      <CardWithForm/>
     </>
   );
 }
