@@ -12,7 +12,6 @@ export function ProductCard({
   id,
   img,
   title,
-  priceAtacado,
   priceVarejo,
 }: ProductCardProps) {
   return (

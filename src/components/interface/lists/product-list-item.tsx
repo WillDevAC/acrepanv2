@@ -8,7 +8,7 @@ interface ProductListItemProps {
   priceAtacado: number;
 }
 
-export function ProductListItem({ id, image, title, priceVarejo, priceAtacado }: ProductListItemProps) {
+export function ProductListItem({ id, image, title, priceVarejo }: ProductListItemProps) {
   return (
     <div className="flex flex-row items-center gap-3 bg-white p-5 rounded-md">
       <section className="flex items-center justify-cente w-20 h-16">
