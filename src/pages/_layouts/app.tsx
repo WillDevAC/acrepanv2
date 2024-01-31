@@ -5,15 +5,42 @@ import { useEffect } from "react";
 
 import Cookies from "js-cookie";
 import MobileTabBar from "@/components/ui/tab-bar";
+import { Gift, Home, Package2, UserCircle } from "lucide-react";
 
 export function AppLayout() {
   const navigate = useNavigate();
 
   const tabs = [
-    { id: "home", label: "Home", content: <div>Conteúdo da Tab 1</div> },
-    { id: "pedidos", label: "Pedidos", content: <div>Conteúdo da Tab 2</div> },
-    { id: "clube", label: "Clube", content: <div>Conteúdo da Tab 2</div> },
-    { id: "perfil", label: "Perfil", content: <div>Conteúdo da Tab 2</div> },
+    {
+      id: "home",
+      label: "Home",
+      content: (
+        <div className="flex flex-col items-center gap-2 font-medium">
+          <Home size={20} className="text-slate-600" />
+          <span className="text-sm text-slate-600">Home</span>
+        </div>
+      ),
+    },
+    {
+      id: "pedidos",
+      label: "pedidos",
+      content: (
+        <div className="flex flex-col items-center gap-2 font-medium">
+          <Package2 size={20} className="text-slate-600" />
+          <span className="text-sm text-slate-600">Pedidos</span>
+        </div>
+      ),
+    },
+    {
+      id: "clube",
+      label: "clube",
+      content: (
+        <div className="flex flex-col items-center gap-2 font-medium">
+          <Gift size={20} className="text-slate-600" />
+          <span className="text-sm text-slate-600">Clube</span>
+        </div>
+      ),
+    },
   ];
 
   useEffect(() => {
