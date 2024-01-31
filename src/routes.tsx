@@ -6,6 +6,8 @@ import { NotFound } from './pages/404'
 import { SignIn } from './pages/auth/sign-in'
 import { SignUp } from './pages/auth/sign-up'
 import { HomePage } from './pages/app/home/home'
+import { ProductPage } from './pages/app/views/product-page'
+import { ViewLayout } from './pages/_layouts/view'
 
 export const router = createBrowserRouter([
   {
@@ -30,6 +32,16 @@ export const router = createBrowserRouter([
       {
         path: '/sign-up',
         element: <SignUp />,
+      },
+    ],
+  },
+  {
+    path: '/',
+    element: <ViewLayout />,
+    children: [
+      {
+        path: '/product/:id', 
+        element: <ProductPage />, 
       },
     ],
   },

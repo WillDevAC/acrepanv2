@@ -1,4 +1,5 @@
 import { formatPrice } from "@/lib/functions";
+import { Link } from "react-router-dom";
 
 interface ProductCardProps {
   id: string;
@@ -8,16 +9,12 @@ interface ProductCardProps {
   priceVarejo: number;
 }
 
-export function ProductCard({
-  id,
-  img,
-  title,
-  priceVarejo,
-}: ProductCardProps) {
+export function ProductCard({ id, img, title, priceVarejo }: ProductCardProps) {
   return (
-    <div
+    <Link
       key={id}
       className="flex-shrink-0 bg-white w-56 rounded-md overflow-hidden"
+      to={`/product/${id}`}
     >
       <div className="p-5">
         <img
@@ -35,6 +32,6 @@ export function ProductCard({
           </p>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
