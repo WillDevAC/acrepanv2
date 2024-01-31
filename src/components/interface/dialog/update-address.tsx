@@ -108,7 +108,7 @@ export function UpdateAddressDrawer({ children }: UpdateAddressDrawerProps) {
   };
 
   return (
-    <Dialog>
+      <Dialog>
       <DialogTrigger>{children}</DialogTrigger>
       <DialogContent>
         <DialogHeader>
@@ -157,6 +157,6 @@ export function UpdateAddressDrawer({ children }: UpdateAddressDrawerProps) {
         </form>
         
       </DialogContent>
-    </Dialog>
+    </Dialog>    
   );
 }
