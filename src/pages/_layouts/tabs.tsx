@@ -1,4 +1,4 @@
-import { Gift, Home, Package2 } from "lucide-react";
+import { Gift, Home, Package2, ShoppingCart } from "lucide-react";
 
 export const tabs = [
   {
@@ -26,8 +26,8 @@ export const tabs = [
     label: "clube",
     content: (
       <div className="flex flex-col items-center gap-2 font-medium">
-        <Gift size={20} className="text-slate-600" />
-        <span className="text-sm text-slate-600">Clube</span>
+        <ShoppingCart size={20} className="text-slate-600" />
+        <span className="text-sm text-slate-600">Carrinho</span>
       </div>
     ),
   },

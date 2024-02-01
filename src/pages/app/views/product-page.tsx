@@ -10,15 +10,21 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+
 import { Textarea } from "@/components/ui/textarea";
 import { formatPrice } from "@/lib/functions";
 import { Minus, Plus } from "lucide-react";
+import { useState } from "react";
 
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 
 export function ProductPage() {
   const { id } = useParams();
+
+  const [quantityVarejo, setQuantityVarejo] = useState(1);
+  const [quantityAtacado, setQuantityAtacado] = useState(10);
+  const [selectedType, setSelectedType] = useState("varejo");
 
   const { data: productDetails, isFetching: isFetchingProductDetails } =
     useQuery({
@@ -30,17 +36,37 @@ export function ProductPage() {
     return <Loading />;
   }
 
+  const handleSelectChange = (selectedItem: string) => {
+    setSelectedType(selectedItem);
+  };
+
+  const handleIncrement = () => {
+    if (selectedType === "varejo" && quantityVarejo < 10) {
+      setQuantityVarejo(quantityVarejo + 1);
+    } else if (selectedType === "atacado") {
+      setQuantityAtacado(quantityAtacado + 1);
+    }
+  };
+
+  const handleDecrement = () => {
+    if (selectedType === "varejo" && quantityVarejo > 1) {
+      setQuantityVarejo(quantityVarejo - 1);
+    } else if (selectedType === "atacado" && quantityAtacado > 10) {
+      setQuantityAtacado(quantityAtacado - 1);
+    }
+  };
+
   return (
     <>
       <div className="flex flex-col w-full min-h-full">
         <section className=" p-4">
           <div className="max-w-2xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div>
+              <div className="flex w-full items-center justify-center">
                 <img
                   src={productDetails.img.url}
                   alt={productDetails?.title}
-                  className="w-full h-auto"
+                  className="max-w-44 h-auto"
                 />
               </div>
               <div>
@@ -49,14 +75,18 @@ export function ProductPage() {
                     {productDetails?.title}
                   </h1>
                   <h1 className="text-xl font-bold text-red-500">
-                    {formatPrice(productDetails?.priceVarejo).toString()}
+                    {selectedType === "varejo" && formatPrice(productDetails?.priceVarejo).toString()}
+                    {selectedType === "atacado" && formatPrice(productDetails?.priceAtacado).toString()}
                   </h1>
                 </div>
                 <div className="mb-4">
                   <label className="block text-sm font-medium text-gray-600 mt-7">
                     Método de compra:{" "}
                   </label>
-                  <Select>
+                  <Select
+                    onValueChange={handleSelectChange}
+                    value={selectedType}
+                  >
                     <SelectTrigger className="w-full mt-3">
                       <SelectValue placeholder="Selecione (Atacado, Varejo)" />
                     </SelectTrigger>
@@ -82,16 +112,51 @@ export function ProductPage() {
               </div>
             </div>
           </div>
-          <div className="mt-10 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <Minus size={40} className="p-3 bg-slate-200 rounded-lg" />
-              <h1 className="font-bold text-lg">0</h1>
-              <Plus size={40} className="p-3 bg-slate-200 rounded-lg" />
+          {selectedType === "atacado" && (
+            <div className="mt-10 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <Minus
+                  size={40}
+                  className="p-3 bg-slate-200 rounded-lg cursor-pointer"
+                  onClick={handleDecrement}
+                />
+                <h1 className="font-bold text-lg">{quantityAtacado}</h1>
+                <Plus
+                  size={40}
+                  className="p-3 bg-slate-200 rounded-lg cursor-pointer"
+                  onClick={handleIncrement}
+                />
+              </div>
+              <div className="flex items-center">
+                <Button size="lg" className="w-full">
+                  Adicionar
+                </Button>
+              </div>
             </div>
-            <div className="flex items-center">
-              <Button size="lg" className="w-full">Adicionar</Button>
+          )}
+
+          {selectedType === "varejo" && (
+            <div className="mt-10 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <Minus
+                  size={40}
+                  className="p-3 bg-slate-200 rounded-lg cursor-pointer"
+                  onClick={handleDecrement}
+                />
+                <h1 className="font-bold text-lg">{quantityVarejo}</h1>
+                <Plus
+                  size={40}
+                  className="p-3 bg-slate-200 rounded-lg cursor-pointer"
+                  onClick={handleIncrement}
+                />
+              </div>
+              <div className="flex items-center">
+                <Button size="lg" className="w-full">
+                  Adicionar
+                </Button>
+              </div>
             </div>
-          </div>
+          )}
         </section>
       </div>
     </>
