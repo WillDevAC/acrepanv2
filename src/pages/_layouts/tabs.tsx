@@ -1,34 +1,41 @@
 import { Home, Package2, ShoppingCart } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export const tabs = [
   {
     id: "home",
     label: "Home",
     content: (
-      <div className="flex flex-col items-center gap-2 font-medium">
+      <Link className="flex flex-col items-center gap-2 font-medium" to="/home">
         <Home size={20} className="text-slate-600" />
         <span className="text-sm text-slate-600">Home</span>
-      </div>
+      </Link>
     ),
   },
   {
     id: "pedidos",
     label: "pedidos",
     content: (
-      <div className="flex flex-col items-center gap-2 font-medium">
+      <Link
+        className="flex flex-col items-center gap-2 font-medium"
+        to="/my-orders"
+      >
         <Package2 size={20} className="text-slate-600" />
         <span className="text-sm text-slate-600">Pedidos</span>
-      </div>
+      </Link>
     ),
   },
   {
     id: "clube",
     label: "clube",
     content: (
-      <div className="flex flex-col items-center gap-2 font-medium">
+      <Link
+        className="flex flex-col items-center gap-2 font-medium"
+        to="/my-cart"
+      >
         <ShoppingCart size={20} className="text-slate-600" />
         <span className="text-sm text-slate-600">Carrinho</span>
-      </div>
+      </Link>
     ),
   },
 ];

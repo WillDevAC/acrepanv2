@@ -1,6 +1,7 @@
 import { GetProductDetails } from "@/api/get-product-details";
 import { Button } from "@/components/ui/button";
 import { Loading } from "@/components/ui/loading";
+
 import {
   Select,
   SelectContent,
@@ -12,12 +13,16 @@ import {
 } from "@/components/ui/select";
 
 import { Textarea } from "@/components/ui/textarea";
+import { ToastAction } from "@/components/ui/toast";
+import { useToast } from "@/components/ui/use-toast";
 import { formatPrice } from "@/lib/functions";
 import { Minus, Plus } from "lucide-react";
 import { useState } from "react";
 
 import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+
+import Swal from 'sweetalert2'
 
 export function ProductPage() {
   const { id } = useParams();
@@ -25,12 +30,86 @@ export function ProductPage() {
   const [quantityVarejo, setQuantityVarejo] = useState(1);
   const [quantityAtacado, setQuantityAtacado] = useState(10);
   const [selectedType, setSelectedType] = useState("varejo");
+  const [observations, setObservations] = useState("");
+
+  const navigate = useNavigate();
 
   const { data: productDetails, isFetching: isFetchingProductDetails } =
     useQuery({
       queryKey: ["products", "get-product-details", id],
       queryFn: () => GetProductDetails(id || ""),
     });
+
+  const { toast } = useToast();
+
+  const addToCart = () => {
+    const newCartItem = {
+      id: productDetails.id,
+      name: productDetails.title,
+      image: productDetails.img.url,
+      type: selectedType,
+      observations: observations,
+      price:
+        selectedType === "atacado"
+          ? parseFloat(productDetails.priceAtacado)
+          : parseFloat(productDetails.priceVarejo),
+      quantity: selectedType === "atacado" ? quantityAtacado : quantityVarejo,
+      total:
+        selectedType === "atacado"
+          ? parseFloat(productDetails.priceAtacado) * quantityAtacado
+          : parseFloat(productDetails.priceVarejo) * quantityVarejo,
+    };
+
+    const existingCartItems = JSON.parse(localStorage.getItem("cart") || "[]");
+
+    const existingItemIndex = existingCartItems.findIndex(
+      (item: any) => item.id === productDetails.id && item.type === selectedType
+    );
+
+    if (existingItemIndex !== -1) {
+      const existingItem = existingCartItems[existingItemIndex];
+
+      if (
+        selectedType === "varejo" &&
+        existingItem.quantity + newCartItem.quantity > 10
+      ) {
+        toast({
+          variant: "destructive",
+          description: "Limite de 10 itens excedido.",
+          action: <ToastAction altText="Tentar novamente">Fechar</ToastAction>,
+        });
+        return;
+      }
+
+      existingItem.quantity += newCartItem.quantity;
+      existingItem.total += newCartItem.total;
+    } else {
+      if (selectedType === "varejo" && newCartItem.quantity > 10) {
+        toast({
+          variant: "destructive",
+          description: "Limite de 10 itens excedido.",
+          action: <ToastAction altText="Tentar novamente">Fechar</ToastAction>,
+        });
+        return;
+      }
+
+      existingCartItems.push(newCartItem);
+    }
+
+    localStorage.setItem("cart", JSON.stringify(existingCartItems));
+
+    navigate('/my-cart');
+
+    Swal.fire({
+      text: 'Produto adicionado ao carrinho.',
+      showConfirmButton: false,
+      icon: "success"
+    });
+  };
+
+  const handleObservationsChange = (event: any) => {
+    setObservations(event.target.value);
+  };
 
   if (isFetchingProductDetails) {
     return <Loading />;
@@ -75,8 +154,10 @@ export function ProductPage() {
                     {productDetails?.title}
                   </h1>
                   <h1 className="text-xl font-bold text-red-500">
-                    {selectedType === "varejo" && formatPrice(productDetails?.priceVarejo).toString()}
-                    {selectedType === "atacado" && formatPrice(productDetails?.priceAtacado).toString()}
+                    {selectedType === "varejo" &&
+                      formatPrice(productDetails?.priceVarejo).toString()}
+                    {selectedType === "atacado" &&
+                      formatPrice(productDetails?.priceAtacado).toString()}
                   </h1>
                 </div>
                 <div className="mb-4">
@@ -107,6 +188,8 @@ export function ProductPage() {
                     placeholder="Digite aqui suas observações."
                     className="mt-3"
                     rows={5}
+                    value={observations}
+                    onChange={handleObservationsChange}
                   />
                 </div>
               </div>
@@ -128,8 +211,20 @@ export function ProductPage() {
                 />
               </div>
               <div className="flex items-center">
-                <Button size="lg" className="w-full">
+                <Button
+                  size="lg"
+                  className="flex items-center justify-between w-full gap-3"
+                  onClick={addToCart}
+                >
                   Adicionar
+                  <span>
+                    {selectedType === "atacado" &&
+                      formatPrice(
+                        (
+                          productDetails.priceAtacado * quantityAtacado
+                        ).toString()
+                      )}
+                  </span>
                 </Button>
               </div>
             </div>
@@ -151,8 +246,18 @@ export function ProductPage() {
                 />
               </div>
               <div className="flex items-center">
-                <Button size="lg" className="w-full">
+                <Button
+                  size="lg"
+                  className="flex items-center justify-between w-full gap-3"
+                  onClick={addToCart}
+                >
                   Adicionar
+                  <span>
+                    {selectedType === "varejo" &&
+                      formatPrice(
+                        (productDetails.priceVarejo * quantityVarejo).toString()
+                      )}
+                  </span>
                 </Button>
               </div>
             </div>

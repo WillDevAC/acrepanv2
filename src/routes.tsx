@@ -8,6 +8,7 @@ import { SignUp } from './pages/auth/sign-up'
 import { HomePage } from './pages/app/home/home'
 import { ProductPage } from './pages/app/views/product-page'
 import { ViewLayout } from './pages/_layouts/view'
+import { MyCartPage } from './pages/app/views/my-cart-page'
 
 export const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ export const router = createBrowserRouter([
       {
         path: '/product/:id', 
         element: <ProductPage />, 
+      },
+      {
+        path: '/my-cart', 
+        element: <MyCartPage />, 
       },
     ],
   },
