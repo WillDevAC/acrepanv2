@@ -1,4 +1,4 @@
-import { Gift, Home, Package2, ShoppingCart } from "lucide-react";
+import { Home, Package2, ShoppingCart } from "lucide-react";
 
 export const tabs = [
   {
