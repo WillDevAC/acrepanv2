@@ -21,16 +21,16 @@ export function MyCartPage() {
       </div>
       <div className="flex flex-col gap-2">
         <div className="flex justify-between items-center border-t-2 pt-5">
-          <p className="text-md font-semibold">Total:</p>
-          <p className="text-md font-semibold">R$ 40.00</p>
+          <p className="text-sm font-semibold">Total:</p>
+          <p className="text-sm ">R$ 40.00</p>
         </div>
         <div className="flex justify-between items-center">
-          <p className="text-md font-semibold">Desconto do clube:</p>
-          <p className="text-md font-semibold">R$ 0.00</p>
+          <p className="text-sm font-semibold">Desconto do clube:</p>
+          <p className="text-sm ">R$ 0.00</p>
         </div>
         <div className="flex justify-between items-center">
-          <p className="text-md font-semibold">Subtotal:</p>
-          <p className="text-md font-semibold">R$ 35.00</p>
+          <p className="text-sm font-semibold">Subtotal:</p>
+          <p className="text-sm ">R$ 35.00</p>
         </div>
       </div>
 
