@@ -1,17 +1,13 @@
 import { Link, useNavigate } from "react-router-dom";
-
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { signIn } from "@/api/sign-in";
-
 import { ToastAction } from "@radix-ui/react-toast";
 import { useToast } from "@/components/ui/use-toast";
 import { useMutation } from "react-query";
-
 import { zodResolver } from "@hookform/resolvers/zod";
-
 import { z } from "zod";
 
 const schema = z.object({
@@ -58,7 +54,10 @@ export function SignIn() {
         <Link to="/sign-up">Não tenho cadastro</Link>
       </Button>
 
-      <div className="flex w-full flex-col max-w-80 justify-center gap-6">
+      <div className="flex w-full flex-col max-w-80 justify-center p-8 bg-white rounded-md shadow-md">
+        <div className="flex items-center justify-center mb-4">
+          <img src="/acrepan-auth.png" alt="Acrepan Logo" />
+        </div>
         <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
@@ -76,8 +75,8 @@ export function SignIn() {
             )}
           </div>
 
-          <Button className="w-full" type="submit" disabled={isSubmitting}>
-            Fazer login
+          <Button className="w-full bg-red-500 text-white hover:bg-red-600 transition-all" type="submit" disabled={isSubmitting}>
+            Entrar
           </Button>
         </form>
       </div>

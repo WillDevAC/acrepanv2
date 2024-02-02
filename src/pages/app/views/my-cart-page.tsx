@@ -91,24 +91,6 @@ export function MyCartPage() {
       action: <ToastAction altText="Fechar">Fechar</ToastAction>,
     });
   };
-
-  const handleFinishPurchase = () => {
-    const formattedProducts = cartItems.map((item: any) => ({
-      productId: item.id,
-      qtd: item.quantity,
-      obs: item.observations || "",
-    }));
-
-    const purchaseData = {
-      products: formattedProducts,
-      type_payment: "PIX",
-      deliveryDate: "2024-02-01",
-      obs: "",
-    };
-
-    console.log("Dados da compra:", purchaseData);
-  };
-
   return (
     <>
       {cartItems.length <= 0 && (
@@ -164,8 +146,8 @@ export function MyCartPage() {
               )}`}</p>
             </div>
           </div>
-          <ConfirmPurshase>
-            <Button onClick={handleFinishPurchase} className="w-full">
+          <ConfirmPurshase cartItems={cartItems}>
+            <Button className="w-full">
               Finalizar compra
             </Button>
           </ConfirmPurshase>

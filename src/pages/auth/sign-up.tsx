@@ -1,14 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/components/ui/use-toast";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-
 import { isValidPhoneNumber } from "@/lib/validations";
-
 import { z } from "zod";
 import { useMutation } from "react-query";
 import { signUp } from "@/api/sign-up";
@@ -62,22 +59,19 @@ export function SignUp() {
         <Link to="/sign-in">Fazer login</Link>
       </Button>
 
-      <div className="flex w-full max-w-80 flex-col justify-center gap-6">
+      <div className="flex w-full max-w-80 flex-col justify-center gap-6 p-8 bg-white rounded-md shadow-md">
+      <div className="flex items-center justify-center mb-4">
+          <img src="/acrepan-auth.png" alt="Acrepan Logo" />
+        </div>
         <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
           <div className="space-y-2">
             <Label htmlFor="name">Nome</Label>
             <Input id="name" type="text" {...register("name")} />
-            {errors.name && (
-              <p className="text-red-400">Insira um nome válido.</p>
-            )}
           </div>
 
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
             <Input id="email" type="email" {...register("email")} />
-            {errors.email && (
-              <p className="text-red-400">Insira um email válido.</p>
-            )}
           </div>
 
           <div className="space-y-2">
@@ -89,19 +83,17 @@ export function SignUp() {
               maxLength={11}
               {...register("phone")}
             />
-            {errors.phone && (
-              <p className="text-red-400">Insira um celular válido.</p>
-            )}
           </div>
           <div className="space-y-2">
             <Label htmlFor="password">Senha</Label>
             <Input id="password" type="password" {...register("password")} />
-            {errors.password && (
-              <p className="text-red-400">Insira uma senha válida.</p>
-            )}
           </div>
 
-          <Button className="w-full" type="submit" disabled={isSubmitting}>
+          <Button
+            className="w-full bg-red-500 text-white hover:bg-red-600 transition-all"
+            type="submit"
+            disabled={isSubmitting}
+          >
             Finalizar cadastro
           </Button>
         </form>
