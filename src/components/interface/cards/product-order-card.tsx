@@ -1,14 +1,6 @@
 import { Calendar, CircleDollarSign, ReceiptText } from "lucide-react";
 import { Link } from "react-router-dom";
 
-interface ProductOrderCardProps {
-  id: string;
-  order: string;
-  shippingMethod: string;
-  total: string;
-  status: "pending" | "payed" | "shipping" | "arrived" | "canceled" | "pending";
-}
-
 export function ProductOrderCard() {
   return (
     <>
