@@ -12,7 +12,7 @@ export function MyClubPage() {
         <section className="flex items-center gap-2">
           <Gem />
           <span>
-            Até <b className="text-[#EAA85C]">20%</b> de desconto.
+            Até <b className="text-[#EAA85C]">20%</b> de desconto em todo app.
           </span>
         </section>
         <section className="flex items-center gap-2">
