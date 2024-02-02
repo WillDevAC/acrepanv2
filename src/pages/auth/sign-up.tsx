@@ -27,7 +27,7 @@ export function SignUp() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { isSubmitting },
   } = useForm({
     resolver: zodResolver(schema),
   });
