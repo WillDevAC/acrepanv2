@@ -1,7 +1,6 @@
 import { ProductCardClub } from "@/components/interface/cards/product-card-club";
 import { Button } from "@/components/ui/button";
 import { Gem, Gift } from "lucide-react";
-import { Link } from "react-router-dom";
 
 export function MyClubPage() {
   return (

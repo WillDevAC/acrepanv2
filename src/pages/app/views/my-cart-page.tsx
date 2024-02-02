@@ -27,7 +27,7 @@ export function MyCartPage() {
     setCartTotal(initialCartTotal);
   }, []);
 
-  const { data: userDetails, isFetching: isLoadingUserDetails } = useQuery({
+  const { isFetching: isLoadingUserDetails } = useQuery({
     queryKey: ["get-user-details"],
     queryFn: getUserDetails,
     staleTime: 10000,
