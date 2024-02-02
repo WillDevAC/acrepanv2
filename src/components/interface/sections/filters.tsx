@@ -52,7 +52,7 @@ export function FilterSection({
               <SelectItem value="destaques">Destaques</SelectItem>
               {CategoriesList &&
                 CategoriesList.map((category) => (
-                  <SelectItem value={category.title}>
+                  <SelectItem value={category.title} key={category.id}>
                     {category.title}
                   </SelectItem>
                 ))}

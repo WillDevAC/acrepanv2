@@ -22,7 +22,7 @@ import { useState } from "react";
 import { useQuery } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
 
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 
 export function ProductPage() {
   const { id } = useParams();
@@ -71,12 +71,19 @@ export function ProductPage() {
 
       if (
         selectedType === "varejo" &&
-        existingItem.quantity + newCartItem.quantity > 10
+        existingItem.quantity + newCartItem.quantity > 9
       ) {
         toast({
           variant: "destructive",
-          description: "Limite de 10 itens excedido.",
-          action: <ToastAction altText="Tentar novamente">Fechar</ToastAction>,
+          description: "Limite de 9 itens excedido.",
+          action: (
+            <ToastAction
+              altText="Tentar novamente"
+              onClick={() => navigate("/my-cart")}
+            >
+              Ver carrinho
+            </ToastAction>
+          ),
         });
         return;
       }
@@ -84,11 +91,18 @@ export function ProductPage() {
       existingItem.quantity += newCartItem.quantity;
       existingItem.total += newCartItem.total;
     } else {
-      if (selectedType === "varejo" && newCartItem.quantity > 10) {
+      if (selectedType === "varejo" && newCartItem.quantity > 9) {
         toast({
           variant: "destructive",
-          description: "Limite de 10 itens excedido.",
-          action: <ToastAction altText="Tentar novamente">Fechar</ToastAction>,
+          description: "Limite de 9 itens excedido.",
+          action: (
+            <ToastAction
+              altText="Tentar novamente"
+              onClick={() => navigate("/my-cart")}
+            >
+              Ver carrinho
+            </ToastAction>
+          ),
         });
         return;
       }
@@ -98,12 +112,12 @@ export function ProductPage() {
 
     localStorage.setItem("cart", JSON.stringify(existingCartItems));
 
-    navigate('/my-cart');
+    navigate("/my-cart");
 
     Swal.fire({
-      text: 'Produto adicionado ao carrinho.',
+      text: "Produto adicionado ao carrinho.",
       showConfirmButton: false,
-      icon: "success"
+      icon: "success",
     });
   };
 
@@ -120,7 +134,7 @@ export function ProductPage() {
   };
 
   const handleIncrement = () => {
-    if (selectedType === "varejo" && quantityVarejo < 10) {
+    if (selectedType === "varejo" && quantityVarejo < 9) {
       setQuantityVarejo(quantityVarejo + 1);
     } else if (selectedType === "atacado") {
       setQuantityAtacado(quantityAtacado + 1);

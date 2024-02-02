@@ -9,6 +9,8 @@ import { HomePage } from './pages/app/home/home'
 import { ProductPage } from './pages/app/views/product-page'
 import { ViewLayout } from './pages/_layouts/view'
 import { MyCartPage } from './pages/app/views/my-cart-page'
+import { MyOdersPage } from './pages/app/views/my-orders-page'
+import { MyClubPage } from './pages/app/views/my-club-page'
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +27,7 @@ export const router = createBrowserRouter([
   {
     path: '/',
     element: <AuthLayout />,
+    errorElement: <NotFound />,
     children: [
       {
         path: '/sign-in',
@@ -39,6 +42,7 @@ export const router = createBrowserRouter([
   {
     path: '/',
     element: <ViewLayout />,
+    errorElement: <NotFound />,
     children: [
       {
         path: '/product/:id', 
@@ -47,6 +51,14 @@ export const router = createBrowserRouter([
       {
         path: '/my-cart', 
         element: <MyCartPage />, 
+      },
+      {
+        path: '/my-orders', 
+        element: <MyOdersPage />, 
+      },
+      {
+        path: '/my-club', 
+        element: <MyClubPage />, 
       },
     ],
   },

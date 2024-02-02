@@ -1,4 +1,4 @@
-import { Home, Package2, ShoppingCart } from "lucide-react";
+import { Gift, Home, Package2, ShoppingCart } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export const tabs = [
@@ -28,6 +28,19 @@ export const tabs = [
   {
     id: "clube",
     label: "clube",
+    content: (
+      <Link
+        className="flex flex-col items-center gap-2 font-medium"
+        to="/my-club"
+      >
+        <Gift size={20} className="text-slate-600" />
+        <span className="text-sm text-slate-600">Clube</span>
+      </Link>
+    ),
+  },
+  {
+    id: "carrinho",
+    label: "carrinho",
     content: (
       <Link
         className="flex flex-col items-center gap-2 font-medium"
