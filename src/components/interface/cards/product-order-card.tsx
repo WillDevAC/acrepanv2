@@ -18,21 +18,21 @@ export function ProductOrderCard() {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Calendar size={20}/>
-              <p className="font-medium">Data do pedido: </p>
+              <p className="font-medium text-sm">Data do pedido: </p>
             </div>
             <span className="text-gray-500">03/02/2024</span>
           </div>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <ReceiptText size={20}/>
-              <p className="font-medium">Método de pagamento: </p>
+              <p className="font-medium text-sm">Método de pagamento: </p>
             </div>
             <span className="text-gray-500">PIX</span>
           </div>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <CircleDollarSign size={20}/>
-              <p className="font-medium">Total do pedido: </p>
+              <p className="font-medium text-sm">Total do pedido: </p>
             </div>
             <span className="text-gray-500">R$ 20.00</span>
           </div>
