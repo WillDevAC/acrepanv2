@@ -95,7 +95,7 @@ export function MyCartPage() {
     <>
       {cartItems.length <= 0 && (
         <span className="text-md text-gray-500 pt-3">
-          Não há produtos na sua sacola.
+          Não há produtos no seu carrinho.
         </span>
       )}
 
