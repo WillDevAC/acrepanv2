@@ -14,6 +14,12 @@ export function ViewLayout() {
     title = "Meus pedidos";
   } else if (location.pathname.includes("/my-club")) {
     title = "Clube de beneficios";
+  } else if (location.pathname.includes("/my-profile")) {
+    title = "Meu perfil";
+  } else if (location.pathname.includes("/order")) {
+    title = "Detalhes do pedido";
+  } else if (location.pathname.includes("/pending-purshase/")) {
+    title = "Pagamento pendente";
   }
 
   return (

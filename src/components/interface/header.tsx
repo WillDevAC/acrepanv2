@@ -8,6 +8,7 @@ import { Skeleton } from "../ui/skeleton";
 import { Button } from "../ui/button";
 
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { Link } from "react-router-dom";
 
 export function Header() {
   const { data: userDetails, isFetching: isLoadingUserDetails } = useQuery({
@@ -43,11 +44,11 @@ export function Header() {
         </div>
       </div>
 
-      <div className="flex items-center">
+      <Link className="flex items-center" to='/my-profile'>
         <Button variant="outline" size="icon">
           <User size={20} />
         </Button>
-      </div>
+      </Link>
     </header>
   );
 }

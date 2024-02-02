@@ -1,20 +1,33 @@
 import { Calendar, CircleDollarSign, ReceiptText } from "lucide-react";
 import { Link } from "react-router-dom";
 
-export function ProductOrderCard() {
+interface ProductOrderCardProps {
+  type: string,
+  path: string,
+}
+
+export function ProductOrderCard( { type, path = '/order/1' }: ProductOrderCardProps) {
+
   return (
     <>
-      <Link
+      <div
         className="bg-white flex flex-col h-auto p-3 gap-3 rounded border relative"
-        to={'#'}
       >
-        <div className="absolute top-0 right-0 p-2 text-white font-medium text-sm bg-blue-500 h-auto">
-          Em andamento
+        { type === 'pending'  && (
+          <div className="absolute top-0 right-0 p-2 w-32 flex items-center justify-center text-white font-medium text-sm bg-blue-500 h-auto">
+          Em preparação
         </div>
+        )}
+        { type === 'wait'  && (
+          <div className="absolute top-0 right-0 p-2 w-32 flex items-center justify-center text-white font-medium text-sm bg-slate-500 h-auto">
+          Pendente
+        </div>
+        )}
+        
         <div className="flex items-center">
           <img src="/acrepan-auth.png" alt="" className="max-w-56"/>
         </div>
-        <div className="p-3 flex flex-col gap-3">
+        <Link className="p-3 flex flex-col gap-3" to={path}>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Calendar size={20}/>
@@ -34,10 +47,10 @@ export function ProductOrderCard() {
               <CircleDollarSign size={20}/>
               <p className="font-medium text-sm">Total do pedido: </p>
             </div>
-            <span className="text-gray-500">R$ 20.00</span>
+            <span className="text-gray-500">R$ 50.00</span>
           </div>
-        </div>
-      </Link>
+        </Link>
+      </div>
     </>
   );
 }
