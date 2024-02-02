@@ -1,4 +1,5 @@
 import { formatPrice } from "@/lib/functions";
+import { Link } from "react-router-dom";
 
 interface ProductListItemProps {
   id: string;
@@ -9,12 +10,16 @@ interface ProductListItemProps {
 }
 
 export function ProductListItem({
+  id,
   image,
   title,
   priceVarejo,
 }: ProductListItemProps) {
   return (
-    <div className="flex flex-row items-center gap-3 bg-white p-5 rounded-md">
+    <Link
+      className="flex flex-row items-center gap-3 bg-white p-5 rounded-md"
+      to={`/product/${id}`}
+    >
       <section className="flex items-center justify-cente w-20 h-16">
         <img
           src={image}
@@ -31,6 +36,6 @@ export function ProductListItem({
           </p>
         </div>
       </section>
-    </div>
+    </Link>
   );
 }
