@@ -22,22 +22,15 @@ export function MyOdersPage() {
             <SelectGroup>
               <SelectLabel>Filtros</SelectLabel>
               <SelectItem value="pending">Pendentes</SelectItem>
+              <SelectItem value="preparate">Em preparação</SelectItem>
               <SelectItem value="shipping">A caminho</SelectItem>
               <SelectItem value="shiped">Entregue</SelectItem>
-              <SelectItem value="canceled">Cancelados</SelectItem>
-              <SelectItem value="agended">Agendados</SelectItem>
             </SelectGroup>
           </SelectContent>
         </Select>
       </div>
       <main className="flex flex-col gap-2 mt-5">
         <ProductOrderCard
-          id="0"
-          order="#2923"
-          shippingMethod="IMEDIATO"
-          status="shipping"
-          total="R$ 120.00"
-          key={0}
         />
       </main>
     </>
