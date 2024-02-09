@@ -16,8 +16,8 @@ export function AuthLayout() {
   }, [navigate]);
 
   return (
-    <div className="flex items-center justify-center h-screen w-screen bg-[#f5f7f9]">
-      <div className="flex flex-col items-center justify-center w-full">
+    <div className="flex p-5 h-screen w-screen bg-white">
+      <div className="flex flex-col w-full">
         <Outlet />
       </div>
     </div>

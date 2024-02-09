@@ -1,84 +1,27 @@
-import { Link, useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { signIn } from "@/api/sign-in";
-import { ToastAction } from "@radix-ui/react-toast";
-import { useToast } from "@/components/ui/use-toast";
-import { useMutation } from "react-query";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 
-const schema = z.object({
-  email: z.string().email(),
-  password: z.string().min(5),
-});
+import { Separator } from "@/components/ui/separator";
 
 export function SignIn() {
-  const navigate = useNavigate();
-  const { toast } = useToast();
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitting },
-  } = useForm({
-    resolver: zodResolver(schema),
-  });
-
-  const { mutateAsync: authenticate } = useMutation({
-    mutationFn: signIn,
-  });
-
-  const onSubmit = async (data: any) => {
-    const { email, password } = data;
-
-    try {
-      await authenticate({ email, password });
-      navigate('/home');
-    } catch (err) {
-      toast({
-        variant: "destructive",
-        description: "Senha incorreta.",
-        action: (
-          <ToastAction altText="Tentar novamente">Tentar novamente</ToastAction>
-        ),
-      });
-    }
-  };
-
   return (
     <>
-      <Button variant="ghost" asChild className="absolute right-8 top-8">
-        <Link to="/sign-up">Não tenho cadastro</Link>
-      </Button>
-
-      <div className="flex w-full flex-col max-w-80 justify-center p-8 bg-white rounded-md shadow-md">
-        <div className="flex items-center justify-center mb-4">
-          <img src="/acrepan-auth.png" alt="Acrepan Logo" />
-        </div>
-        <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
-          <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
-            <Input id="email" type="text" {...register("email")} />
-            {errors.email && (
-              <p className="text-red-400">Preecha um email válido.</p>
-            )}
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="password">Senha</Label>
-            <Input id="password" type="password" {...register("password")} />
-            {errors.password && (
-              <p className="text-red-400">Preencha uma senha válida.</p>
-            )}
-          </div>
-
-          <Button className="w-full bg-red-500 text-white hover:bg-red-600 transition-all" type="submit" disabled={isSubmitting}>
+      <section className="flex w-full items-center justify-center">
+        <img src="/acrepan-auth.png" alt="website Logo" className="max-w-72" />
+      </section>
+      <div className="mt-10">
+        <p className="font-medium">Faça login</p>
+        <form className="flex flex-col mt-3 gap-4">
+          <Input placeholder="E-mail" type="email" />
+          <Input placeholder="Senha" type="password" />
+          <Button size="lg" className="uppercase">
             Entrar
           </Button>
         </form>
+        <Separator className="my-4" />
+      </div>
+      <div className="flex mt-3 items-center justify-center">
+        <span className="text-sm text-gray-400">Não possui uma conta?</span>
       </div>
     </>
   );
