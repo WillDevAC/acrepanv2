@@ -4,9 +4,6 @@ import { useEffect } from "react";
 
 import { Header } from "@/components/interface/header";
 import { Outlet, useNavigate } from "react-router-dom";
-import { tabs } from "./tabs";
-
-import MobileTabBar from "@/components/ui/tab-bar";
 
 export function AppLayout() {
   const navigate = useNavigate();
@@ -24,10 +21,9 @@ export function AppLayout() {
     <>
       <div className="flex min-h-screen flex-col antialiased bg-[#f5f7f9]">
         <Header />
-        <div className="flex flex-1 flex-col gap-4 p-5 pt-6">
+        <div className="flex flex-1 flex-col gap-4">
           <Outlet />
         </div>
-        <MobileTabBar tabs={tabs} />
       </div>
     </>
   );

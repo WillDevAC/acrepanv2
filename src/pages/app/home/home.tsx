@@ -1,20 +1,66 @@
 import { useState } from "react";
 
-import { HighlightsSection } from "@/components/interface/sections/highlights";
-import { FilteredCategory } from "@/components/interface/sections/filtered-category";
-import { FilterSection } from "@/components/interface/sections/filters";
-
 export function HomePage() {
-  const [filterItem, setFilterItem] = useState("destaques");
+  const [activeTab, setActiveTab] = useState("destaques");
+
+  const activeTabStyle = "border-red-500 text-red-600";
+  const inactiveTabStyle =
+    "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300";
+  const tabButtonStyle =
+    "  flex h-11 w-full items-center justify-center text-sm font-medium border-b-2";
+
+  const handleTabClick = (tab: string) => {
+    setActiveTab(tab);
+  };
+
+  const renderTabButton = (tabName: string, label: string) => (
+    <button
+      onClick={() => handleTabClick(tabName)}
+      className={`
+        ${activeTab === tabName ? activeTabStyle : inactiveTabStyle}
+        ${tabButtonStyle}
+      `}
+    >
+      {label}
+    </button>
+  );
 
   return (
     <>
-      <FilterSection setFilterItem={setFilterItem} filterItem={filterItem} />
-      {filterItem === "destaques" ? (
-        <HighlightsSection />
-      ) : (
-        <FilteredCategory itemByFilter={filterItem} />
-      )}
+      <div
+        className="flex bg-white overflow-auto w-full"
+        aria-label="Tabs"
+      >
+        {renderTabButton("destaques", "Destaques")}
+        {renderTabButton("paes", "Pães")}
+        {renderTabButton("bolos", "Bolos")}
+        {renderTabButton("roscas", "Roscas")}
+      </div>
+
+      <div
+        className={`${activeTab === "destaques" ? "block" : "hidden"}`}
+        id="destaques"
+      >
+        Make changes to your account here.
+      </div>
+      <div
+        className={`${activeTab === "paes" ? "block" : "hidden"}`}
+        id="paes"
+      >
+        Change your password here.
+      </div>
+      <div
+        className={`${activeTab === "bolos" ? "block" : "hidden"}`}
+        id="bolos"
+      >
+        Other tab content.
+      </div>
+      <div
+        className={`${activeTab === "roscas" ? "block" : "hidden"}`}
+        id="roscas"
+      >
+        Other tab content.
+      </div>
     </>
   );
 }
