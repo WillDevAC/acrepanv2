@@ -28,7 +28,7 @@ export function HomePage() {
 
   return (
     <>
-      <section className="pr-4 pl-4 flex items-center justify-around w-full bg-white h-11">
+      <section className="pr-4 pl-4 flex items-center justify-around w-full bg-white h-11 pt-8 pb-8">
         <div className="flex items-center gap-3">
           <Clock10 />
           <div className="flex flex-col">
