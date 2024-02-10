@@ -1,15 +1,19 @@
 import { Link, useNavigate } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { useToast } from "@/components/ui/use-toast";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { isValidPhoneNumber } from "@/lib/validations";
-import { z } from "zod";
+import { ToastAction } from "@/components/ui/toast";
+import { Separator } from "@/components/ui/separator";
+
 import { useMutation } from "react-query";
 import { signUp } from "@/api/sign-up";
-import { ToastAction } from "@/components/ui/toast";
+
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+
+import { z } from "zod";
+import { Checkbox } from "@/components/ui/checkbox";
 
 const schema = z.object({
   email: z.string().email(),
@@ -55,48 +59,46 @@ export function SignUp() {
 
   return (
     <>
-      <Button variant="ghost" asChild className="absolute right-8 top-8">
-        <Link to="/sign-in">Fazer login</Link>
-      </Button>
+      <section className="flex w-full items-center justify-center">
+        <img src="/acrepan-auth.png" alt="website Logo" className="max-w-80" />
+      </section>
+      <div className="mt-10">
+        <p className="font-medium text-md">Faça seu cadastro</p>
+        <form
+          className="flex flex-col mt-3 gap-4"
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <Input placeholder="Apelido" type="text" {...register("name")} />
+          <Input placeholder="E-mail" type="email" {...register("email")} />
 
-      <div className="flex w-full max-w-80 flex-col justify-center gap-6 p-8 bg-white rounded-md shadow-md">
-      <div className="flex items-center justify-center mb-4">
-          <img src="/acrepan-auth.png" alt="Acrepan Logo" />
-        </div>
-        <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
-          <div className="space-y-2">
-            <Label htmlFor="name">Nome</Label>
-            <Input id="name" type="text" {...register("name")} />
+          <Input placeholder="Telefone" type="tel" {...register("phone")} />
+          <Input
+            placeholder="Senha"
+            type="password"
+            {...register("password")}
+          />
+          <div className="flex items-center">
+            <Checkbox id="termos-de-uso" />
+            <label htmlFor="termos-de-uso" className="text-sm font-regular p-3">
+              Ao se cadastrar na pão pão, você concorda com os termos de uso do
+              aplicativo.
+            </label>
           </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
-            <Input id="email" type="email" {...register("email")} />
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="phone">Celular</Label>
-            <Input
-              placeholder="(99) 99999-9999"
-              type="tel"
-              minLength={1}
-              maxLength={11}
-              {...register("phone")}
-            />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="password">Senha</Label>
-            <Input id="password" type="password" {...register("password")} />
-          </div>
-
           <Button
-            className="w-full bg-red-500 text-white hover:bg-red-600 transition-all"
+            size="lg"
+            className="uppercase"
             type="submit"
             disabled={isSubmitting}
           >
-            Finalizar cadastro
+            Entrar
           </Button>
         </form>
+        <Separator className="my-4" />
+      </div>
+      <div className="flex mt-3 items-center justify-center">
+        <Link to="/sign-in" className=" text-gray-500 text-md">
+          Já possui uma conta?
+        </Link>
       </div>
     </>
   );
