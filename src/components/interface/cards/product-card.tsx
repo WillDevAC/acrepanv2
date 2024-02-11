@@ -28,11 +28,11 @@ export function ProductCard({
         <section id="photo-details" className="flex flex-col p-3">
           <img src={img} alt="Foto do produto" className="max-w-14" />
         </section>
-        <section id="details" className="flex flex-col gap-1 flex-1 pt-3">
+        <section id="details" className="flex flex-col gap-2 flex-1 pt-3">
           <h1 className="font-bold text-md uppercase w-2/3 ">{title}</h1>
-          <span className="text-xs text-gray-500">{description}</span>
+          <span className="text-xs text-gray-500 w-4/5">{description}</span>
           <div className="flex flex-col mt-3 pb-3">
-            <span className="text-xs text-gray-500 font-medium">
+            <span className="text-xs text-gray-600 font-medium">
               Preço/unidade
             </span>
             <p className="font-bold text-red-600">
