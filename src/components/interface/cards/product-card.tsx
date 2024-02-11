@@ -9,12 +9,14 @@ interface ProductCardProps {
   title: string;
   priceAtacado: number;
   priceVarejo: number;
+  description: string;
 }
 
 export function ProductCard({
   id = "0",
   img = "#",
   title = "",
+  description = "",
   priceVarejo = 0,
 }: ProductCardProps) {
   return (
@@ -28,8 +30,11 @@ export function ProductCard({
         </section>
         <section id="details" className="flex flex-col gap-1 flex-1 pt-3">
           <h1 className="font-bold text-md uppercase w-2/3 ">{title}</h1>
+          <span className="text-xs text-gray-500">{description}</span>
           <div className="flex flex-col mt-3 pb-3">
-            <span className="text-xs text-gray-500">Preço/unidade</span>
+            <span className="text-xs text-gray-500 font-medium">
+              Preço/unidade
+            </span>
             <p className="font-bold text-red-600">
               {formatPrice(priceVarejo.toString())}
             </p>

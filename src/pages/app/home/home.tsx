@@ -34,6 +34,7 @@ export function HomePage() {
             priceAtacado={12.0}
             priceVarejo={13.0}
             title="PÃO DE ALHO"
+            description="Pão gostoso e saboroso meu amigo."
           />
           <ProductCard
             id="0"
@@ -41,6 +42,7 @@ export function HomePage() {
             priceAtacado={12.0}
             priceVarejo={13.0}
             title="PÃO DE ALHO"
+            description="Pão gostoso e saboroso meu amigo."
           />
           <ProductCard
             id="0"
@@ -48,6 +50,7 @@ export function HomePage() {
             priceAtacado={12.0}
             priceVarejo={13.0}
             title="PÃO DE ALHO"
+            description="Pão gostoso e saboroso meu amigo."
           />
         </section>
       </main>
