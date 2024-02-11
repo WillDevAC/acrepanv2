@@ -47,9 +47,6 @@ export function HomePage() {
               </section>
               <section id="details" className="flex flex-col gap-1 flex-1 pt-3">
                 <h1 className="font-bold text-md">Pão francês</h1>
-                <span className="text-xs text-left w-full text-gray-500">
-                  Um pão dourado e crocante.
-                </span>
                 <div className="flex flex-col mt-3 pb-3">
                   <span className="text-xs text-gray-500">Preço/unidade</span>
                   <p className="font-bold text-red-600">R$ 0.00</p>
@@ -72,9 +69,6 @@ export function HomePage() {
               </section>
               <section id="details" className="flex flex-col gap-1 flex-1 pt-3">
                 <h1 className="font-bold text-md">Pão francês</h1>
-                <span className="text-xs text-left w-full text-gray-500">
-                  Um pão dourado e crocante.
-                </span>
                 <div className="flex flex-col mt-3 pb-3">
                   <span className="text-xs text-gray-500">Preço/unidade</span>
                   <p className="font-bold text-red-600">R$ 0.00</p>
