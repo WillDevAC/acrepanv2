@@ -1,4 +1,5 @@
-import { Clock10, Flame } from "lucide-react";
+import { ProductCard } from "@/components/interface/cards/product-card";
+import { Clock10 } from "lucide-react";
 import { useState } from "react";
 
 export function HomePage() {
@@ -31,55 +32,29 @@ export function HomePage() {
       <main className="block p-3 pt-10">
         <div className="flex flex-col w-full gap-1">
           <h1 className="font-bold text-xl text-gray-700">Destaques</h1>
-          <span className="text-sm text-gray-500">
-            Em destaque, surpreenda-se
-          </span>
         </div>
         <section className="flex overflow-x-auto gap-2 mt-3 no-scrollbar">
-          <article className="flex flex-col bg-white min-w-80 max-w-5 rounded h-auto relative border">
-            <div className="flex">
-              <section id="photo-details" className="flex flex-col p-3">
-                <img
-                  src="/pao.png"
-                  alt="Foto do produto"
-                  className="max-w-14"
-                />
-              </section>
-              <section id="details" className="flex flex-col gap-1 flex-1 pt-3">
-                <h1 className="font-bold text-md">Pão francês</h1>
-                <div className="flex flex-col mt-3 pb-3">
-                  <span className="text-xs text-gray-500">Preço/unidade</span>
-                  <p className="font-bold text-red-600">R$ 0.00</p>
-                </div>
-              </section>
-              <div className="flex items-center absolute m-2 gap-1 rounded text-white text-sm font-medium p-1 top-0 right-0 bg-orange-600">
-                <Flame size={15} />
-                <p>DESTAQUE</p>
-              </div>
-            </div>
-          </article>
-          <article className="flex flex-col bg-white min-w-80 max-w-5 rounded h-auto relative border">
-            <div className="flex">
-              <section id="photo-details" className="flex flex-col p-3">
-                <img
-                  src="/pao.png"
-                  alt="Foto do produto"
-                  className="max-w-14"
-                />
-              </section>
-              <section id="details" className="flex flex-col gap-1 flex-1 pt-3">
-                <h1 className="font-bold text-md">Pão francês</h1>
-                <div className="flex flex-col mt-3 pb-3">
-                  <span className="text-xs text-gray-500">Preço/unidade</span>
-                  <p className="font-bold text-red-600">R$ 0.00</p>
-                </div>
-              </section>
-              <div className="flex items-center absolute m-2 gap-1 rounded text-white text-sm font-medium p-1 top-0 right-0 bg-orange-600">
-                <Flame size={15} />
-                <p>DESTAQUE</p>
-              </div>
-            </div>
-          </article>
+          <ProductCard
+            id="0"
+            img="/pao.png"
+            priceAtacado={12.0}
+            priceVarejo={13.0}
+            title="PÃO DE ALHO"
+          />
+          <ProductCard
+            id="0"
+            img="/pao.png"
+            priceAtacado={12.0}
+            priceVarejo={13.0}
+            title="PÃO DE ALHO"
+          />
+          <ProductCard
+            id="0"
+            img="/pao.png"
+            priceAtacado={12.0}
+            priceVarejo={13.0}
+            title="PÃO DE ALHO"
+          />
         </section>
       </main>
     );

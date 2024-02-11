@@ -1,5 +1,7 @@
-import { formatPrice } from "@/lib/functions";
+import { Flame } from "lucide-react";
 import { Link } from "react-router-dom";
+
+import { formatPrice } from "@/lib/functions";
 
 interface ProductCardProps {
   id: string;
@@ -9,27 +11,33 @@ interface ProductCardProps {
   priceVarejo: number;
 }
 
-export function ProductCard({ id, img, title, priceVarejo }: ProductCardProps) {
+export function ProductCard({
+  id = "0",
+  img = "#",
+  title = "",
+  priceVarejo = 0,
+}: ProductCardProps) {
   return (
     <Link
-      key={id}
-      className="flex-shrink-0 bg-white w-56 rounded-md overflow-hidden"
       to={`/product/${id}`}
+      className="flex flex-col bg-white min-w-[350px] max-w-5 rounded h-auto relative border"
     >
-      <div className="p-5">
-        <img
-          className="w-full max-h-28  object-contain mb-4"
-          src={img}
-          alt={title}
-        />
-      </div>
-      <div className="px-6 py-2 pb-5">
-        <div className="font-bold text-xl mb-2">{title}</div>
-        <div className="flex flex-col">
-          <span className="text-gray-600 text-xs mt-2">Preço/unidade</span>
-          <p className="font-bold text-md text-red-600">
-            {formatPrice(priceVarejo.toString())}
-          </p>
+      <div className="flex">
+        <section id="photo-details" className="flex flex-col p-3">
+          <img src={img} alt="Foto do produto" className="max-w-14" />
+        </section>
+        <section id="details" className="flex flex-col gap-1 flex-1 pt-3">
+          <h1 className="font-bold text-md uppercase w-2/3 ">{title}</h1>
+          <div className="flex flex-col mt-3 pb-3">
+            <span className="text-xs text-gray-500">Preço/unidade</span>
+            <p className="font-bold text-red-600">
+              {formatPrice(priceVarejo.toString())}
+            </p>
+          </div>
+        </section>
+        <div className="flex items-center absolute m-2 gap-1 rounded text-white text-sm font-medium p-1 top-0 right-0 bg-orange-600">
+          <Flame size={15} />
+          <p>DESTAQUE</p>
         </div>
       </div>
     </Link>
