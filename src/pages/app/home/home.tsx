@@ -1,4 +1,4 @@
-import { Clock10, Sparkles, Star } from "lucide-react";
+import { Clock10 } from "lucide-react";
 import { useState } from "react";
 
 export function HomePage() {
