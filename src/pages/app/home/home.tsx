@@ -1,5 +1,5 @@
 import { ProductCard } from "@/components/interface/cards/product-card";
-import { Clock10 } from "lucide-react";
+import { DeliveryShippingInfo } from "@/components/interface/sections/delivery-shipping-info";
 import { useState } from "react";
 
 export function HomePage() {
@@ -66,23 +66,7 @@ export function HomePage() {
 
   return (
     <>
-      <section className="pr-4 pl-4 flex items-center justify-around w-full bg-white h-11 pt-8 pb-8">
-        <div className="flex items-center gap-3">
-          <Clock10 />
-          <div className="flex flex-col">
-            <h3 className="text-xs font-bold">Tempo médio</h3>
-            <span className="text-xs">15 a 20 minutos</span>
-          </div>
-        </div>
-        <div className="flex items-center gap-3">
-          <div className="flex flex-col">
-            <h3 className="text-xs font-bold text-center text-green-600">
-              Loja aberta
-            </h3>
-            <span className="text-xs text-center">das 13 às 22h</span>
-          </div>
-        </div>
-      </section>
+      <DeliveryShippingInfo time="15 à 20 minutos" isOpenCompany={true} />
       <div className="bg-white overflow-x-auto w-full" aria-label="Tabs">
         <div className="flex" style={{ overflowX: "auto" }}>
           {renderTabButton("destaques", "Destaques")}
