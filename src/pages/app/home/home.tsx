@@ -1,4 +1,4 @@
-import { Clock10 } from "lucide-react";
+import { Clock10, Flame, Star } from "lucide-react";
 import { useState } from "react";
 
 export function HomePage() {
@@ -35,10 +35,10 @@ export function HomePage() {
             Em destaque, surpreenda-se
           </span>
         </div>
-        <section className="flex overflow-x-auto gap-5 mt-3">
-          <article className="flex flex-col bg-white min-w-80 max-w-5 rounded h-auto relative">
+        <section className="flex overflow-x-auto gap-2 mt-3 no-scrollbar">
+          <article className="flex flex-col bg-white min-w-80 max-w-5 rounded h-auto relative border">
             <div className="flex">
-            <section id="photo-details" className="flex flex-col p-5">
+              <section id="photo-details" className="flex flex-col p-3">
                 <img
                   src="/pao.png"
                   alt="Foto do produto"
@@ -55,8 +55,34 @@ export function HomePage() {
                   <p className="font-bold text-red-600">R$ 0.00</p>
                 </div>
               </section>
-              <div className="absolute p-3 top-0 right-0">
-                DESTAQUE
+              <div className="flex items-center absolute m-2 gap-1 rounded text-white text-sm font-medium p-1 top-0 right-0 bg-blue-600">
+                <Flame size={15} />
+                <p>DESTAQUE</p>
+              </div>
+            </div>
+          </article>
+          <article className="flex flex-col bg-white min-w-80 max-w-5 rounded h-auto relative border">
+            <div className="flex">
+              <section id="photo-details" className="flex flex-col p-3">
+                <img
+                  src="/pao.png"
+                  alt="Foto do produto"
+                  className="max-w-14"
+                />
+              </section>
+              <section id="details" className="flex flex-col gap-1 flex-1 pt-3">
+                <h1 className="font-bold text-md">Pão francês</h1>
+                <span className="text-xs text-left w-full text-gray-500">
+                  Um pão dourado e crocante.
+                </span>
+                <div className="flex flex-col mt-3 pb-3">
+                  <span className="text-xs text-gray-500">Preço/unidade</span>
+                  <p className="font-bold text-red-600">R$ 0.00</p>
+                </div>
+              </section>
+              <div className="flex items-center absolute m-2 gap-1 rounded text-white text-sm font-medium p-1 top-0 right-0 bg-blue-600">
+                <Flame size={15} />
+                <p>DESTAQUE</p>
               </div>
             </div>
           </article>
