@@ -1,44 +1,42 @@
 import { Flame } from "lucide-react";
 import { Link } from "react-router-dom";
-
 import { formatPrice } from "@/lib/functions";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface ProductCardProps {
-  id: string;
-  img: string;
-  title: string;
-  priceAtacado: number;
-  priceVarejo: number;
-  description: string;
+  id?: string;
+  img?: string;
+  title?: string;
+  priceVarejo?: number;
+  priceAtacado?: number;
+  description?: string;
+  type: "skeleton" | "default" | "list";
 }
 
-export function ProductCard({
-  id = "0",
-  img = "#",
-  title = "",
-  description = "",
-  priceVarejo = 0,
+function DefaultVariantProductCard({
+  id,
+  title,
+  description,
+  img,
+  priceVarejo,
 }: ProductCardProps) {
   return (
     <Link
       to={`/product/${id}`}
-      className="flex flex-col bg-white min-w-[350px] max-w-5 rounded h-auto relative border"
+      className="flex flex-col bg-white min-w-[350px] max-w-5 rounded h-auto relative border pt-2"
     >
       <div className="flex">
-        <section id="photo-details" className="flex flex-col p-3">
-          <img src={img} alt="Foto do produto" className="max-w-14" />
+        <section className="flex items-center justify-center flex-col p-3">
+          <img src={img} alt="Foto do produto" className="max-w-[65px]" />
         </section>
-        <section id="details" className="flex flex-col gap-2 flex-1 pt-3">
-          <h1 className="font-bold text-md uppercase w-2/3 ">{title}</h1>
-          <span className="text-xs text-gray-500 w-4/5">{description}</span>
-          <div className="flex flex-col mt-3 pb-3">
-            <span className="text-xs text-gray-600 font-medium">
-              Preço/unidade
-            </span>
-            <p className="font-bold text-red-600">
-              {formatPrice(priceVarejo.toString())}
-            </p>
-          </div>
+        <section className="flex flex-col flex-1 pt-1">
+          <h1 className="font-bold text-lg w-2/3">{title}</h1>
+          <span className="text-gray-400 text-md w-[90%] pt-1">
+            {description}
+          </span>
+          <p className="pt-2 pb-3 text-orange-600 font-medium text-md">
+            {priceVarejo && formatPrice(priceVarejo.toString())}
+          </p>
         </section>
         <div className="flex items-center absolute m-2 gap-1 rounded text-white text-sm font-medium p-1 top-0 right-0 bg-blue-600">
           <Flame size={15} />
@@ -46,5 +44,63 @@ export function ProductCard({
         </div>
       </div>
     </Link>
+  );
+}
+
+function ListVariantProductCard({
+  id,
+  title,
+  description,
+  img,
+  priceVarejo,
+}: ProductCardProps) {
+  return (
+    <Link
+      to={`/product/${id}`}
+      className="flex flex-col bg-white w-full h-auto rounded relative border pt-2"
+    >
+      <div className="flex">
+        <section className="flex items-center justify-center flex-col p-3">
+          <img src={img} alt="Foto do produto" className="max-w-[65px]" />
+        </section>
+        <section className="flex flex-col flex-1 pt-1">
+          <h1 className="font-bold text-lg w-2/3">{title}</h1>
+          <span className="text-gray-400 text-md w-[90%] pt-1">
+            {description}
+          </span>
+          <p className="pt-2 pb-3 text-orange-600 font-medium text-md">
+            {priceVarejo && formatPrice(priceVarejo.toString())}
+          </p>
+        </section>
+      </div>
+    </Link>
+  );
+}
+
+function SkeletonVariantProductCard() {
+  return (
+    <div className="flex flex-col bg-white w-full rounded h-auto border">
+      <div className="flex items-center space-x-4 p-3">
+        <Skeleton className="h-12 w-12 rounded-full" />
+        <div className="space-y-2">
+          <Skeleton className="h-4 w-[250px]" />
+          <Skeleton className="h-4 w-[200px]" />
+          <Skeleton className="h-4 w-[200px]" />
+          <Skeleton className="h-4 w-[100px]" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function ProductCard(props: ProductCardProps) {
+  const { type } = props;
+
+  return (
+    <>
+      {type === "default" && <DefaultVariantProductCard {...props} />}
+      {type === "list" && <ListVariantProductCard {...props} />}
+      {type === "skeleton" && <SkeletonVariantProductCard />}
+    </>
   );
 }

@@ -10,6 +10,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Separator } from "@/components/ui/separator";
 
 import { z } from "zod";
+import { ThreeDots } from "react-loader-spinner";
 
 const schema = z.object({
   email: z.string().email(),
@@ -66,8 +67,15 @@ export function SignIn() {
             type="password"
             {...register("password")}
           />
-          <Button size="lg" className="uppercase" type="submit" disabled={isSubmitting}>
-            Entrar
+          <Button
+            size="lg"
+            className="uppercase"
+            type="submit"
+            disabled={isSubmitting}
+          >
+            {isSubmitting && <ThreeDots color="white" width={45} height={45} />}
+
+            {!isSubmitting && "Entrar"}
           </Button>
         </form>
         <Separator className="my-4" />

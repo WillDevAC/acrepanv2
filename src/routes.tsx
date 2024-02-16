@@ -4,7 +4,6 @@ import { AppLayout } from './pages/_layouts/app'
 import { AuthLayout } from './pages/_layouts/auth'
 import { NotFound } from './pages/404'
 import { HomePage } from './pages/app/home/home'
-import { ProductPage } from './pages/app/views/product-page'
 import { ViewLayout } from './pages/_layouts/view'
 import { MyCartPage } from './pages/app/views/my-cart-page'
 
@@ -43,10 +42,6 @@ export const router = createBrowserRouter([
     element: <ViewLayout />,
     errorElement: <NotFound />,
     children: [
-      {
-        path: '/product/:id', 
-        element: <ProductPage />, 
-      },
       {
         path: '/my-cart', 
         element: <MyCartPage />, 

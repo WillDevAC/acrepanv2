@@ -2,12 +2,8 @@ import { useEffect, useState } from "react";
 
 import { ProductCardCartItem } from "@/components/interface/cards/product-card-cart";
 import { Button } from "@/components/ui/button";
-import { getUserDetails } from "@/api/get-user-details";
-import { useQuery } from "react-query";
-import { Loading } from "@/components/ui/loading";
 import { useToast } from "@/components/ui/use-toast";
 import { ToastAction } from "@radix-ui/react-toast";
-import { ConfirmPurshase } from "@/components/interface/drawer/confirm-purshase";
 
 export function MyCartPage() {
   const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
@@ -26,12 +22,6 @@ export function MyCartPage() {
     );
     setCartTotal(initialCartTotal);
   }, []);
-
-  const { isFetching: isLoadingUserDetails } = useQuery({
-    queryKey: ["get-user-details"],
-    queryFn: getUserDetails,
-    staleTime: 10000,
-  });
 
   const handleIncrement = (index: any) => {
     const updatedCart = [...cartItems];
@@ -79,10 +69,6 @@ export function MyCartPage() {
 
     localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
-
-  if (isLoadingUserDetails) {
-    return <Loading />;
-  }
 
   const handelChangeMethodPayment = () => {
     toast({
@@ -146,11 +132,6 @@ export function MyCartPage() {
               )}`}</p>
             </div>
           </div>
-          <ConfirmPurshase cartItems={cartItems}>
-            <Button className="w-full">
-              Finalizar compra
-            </Button>
-          </ConfirmPurshase>
         </>
       )}
     </>

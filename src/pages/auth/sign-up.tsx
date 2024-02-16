@@ -14,6 +14,7 @@ import { Input } from "@/components/ui/input";
 
 import { z } from "zod";
 import { Checkbox } from "@/components/ui/checkbox";
+import { ThreeDots } from "react-loader-spinner";
 
 const schema = z.object({
   email: z.string().email(),
@@ -90,7 +91,9 @@ export function SignUp() {
             type="submit"
             disabled={isSubmitting}
           >
-            Entrar
+            {isSubmitting && <ThreeDots color="white" width={45} height={45} />}
+
+            {!isSubmitting && "Realizar cadastro"}
           </Button>
         </form>
         <Separator className="my-4" />
