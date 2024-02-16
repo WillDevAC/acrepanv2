@@ -50,7 +50,7 @@ function DefaultVariantProductCard({
             {priceVarejo && formatPrice(priceVarejo.toString())}
           </p>
         </section>
-        <div className="flex items-center absolute m-2 gap-1 rounded text-white text-sm font-medium p-1 top-0 right-0 bg-orange-600">
+        <div className="flex items-center absolute m-2 gap-1 rounded text-white text-sm font-medium p-1 top-0 right-0 bg-slate-600">
           <Flame size={15} />
           <p>DESTAQUE</p>
         </div>
