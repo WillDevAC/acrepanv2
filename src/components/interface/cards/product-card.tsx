@@ -15,7 +15,6 @@ interface ProductCardProps {
 }
 
 function DefaultVariantProductCard({
-  id,
   title,
   description,
   img,
