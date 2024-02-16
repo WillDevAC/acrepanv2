@@ -4,9 +4,12 @@ import { ProductCard } from "@/components/interface/cards/product-card";
 import { useGetProducts } from "@/api/get-all-products";
 
 import { useState, useRef, useEffect } from "react";
+import { ViewProductDetailsDrawer } from "@/components/interface/drawer/confirm-disconnect";
 
-const inactiveTabStyle = "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300";
-const tabButtonStyle = "flex h-11 w-full items-center justify-center text-sm font-medium border-b-2";
+const inactiveTabStyle =
+  "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300";
+const tabButtonStyle =
+  "flex h-11 w-full items-center justify-center text-sm font-medium border-b-2";
 const activeTabStyle = "border-red-500 text-red-600";
 
 export function HomePage() {
@@ -68,16 +71,18 @@ export function HomePage() {
         {!isLoading &&
           listProducts &&
           listProducts.map((product: any) => (
-            <ProductCard
-              key={product.id}
-              type="default"
-              id={product.id}
-              title={product.title}
-              priceAtacado={product.priceAtacado}
-              priceVarejo={product.priceAtacado}
-              description={product.description}
-              img={product.img.url}
-            />
+            <ViewProductDetailsDrawer>
+                <ProductCard
+                  key={product.id}
+                  type="default"
+                  id={product.id}
+                  title={product.title}
+                  priceAtacado={product.priceAtacado}
+                  priceVarejo={product.priceAtacado}
+                  description={product.description}
+                  img={product.img.url}
+                />
+            </ViewProductDetailsDrawer>
           ))}
       </section>
     </main>

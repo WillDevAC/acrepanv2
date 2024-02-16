@@ -1,5 +1,4 @@
 import { createBrowserRouter } from 'react-router-dom'
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import { AppLayout } from './pages/_layouts/app'
 import { AuthLayout } from './pages/_layouts/auth'
@@ -19,13 +18,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: '/home',
-        element: (
-          <TransitionGroup>
-            <CSSTransition key="home" classNames="slide" timeout={300}>
-              <HomePage />
-            </CSSTransition>
-          </TransitionGroup>
-        ),
+        element: <HomePage />,
       },
     ],
   },
@@ -36,23 +29,11 @@ export const router = createBrowserRouter([
     children: [
       {
         path: '/sign-in',
-        element: (
-          <TransitionGroup>
-            <CSSTransition key="signin" classNames="slide" timeout={300}>
-              <SignIn />
-            </CSSTransition>
-          </TransitionGroup>
-        ),
+        element: <SignIn />,
       },
       {
         path: '/sign-up',
-        element: (
-          <TransitionGroup>
-            <CSSTransition key="signup" classNames="slide" timeout={300}>
-              <SignUp />
-            </CSSTransition>
-          </TransitionGroup>
-        ),
+        element: <SignUp />,
       },
     ],
   },
@@ -63,13 +44,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: '/my-cart', 
-        element: (
-          <TransitionGroup>
-            <CSSTransition key="mycart" classNames="slide" timeout={300}>
-              <MyCartPage />
-            </CSSTransition>
-          </TransitionGroup>
-        ), 
+        element: <MyCartPage />, 
       },
     ],
   },

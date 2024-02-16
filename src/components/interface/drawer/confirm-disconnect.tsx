@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import {
   Drawer,
   DrawerClose,
@@ -8,41 +9,29 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 
-interface ConfirmDisconnectProps {
+interface ViewProductDetailsDrawerProps {
   children: React.ReactNode;
 }
 
-import Cookies from 'js-cookie'
-
-import { Button } from "@/components/ui/button";
-
-import { useNavigate } from "react-router-dom";
-
-export function ConfirmDisconnect({ children }: ConfirmDisconnectProps) {
-  const navigate = useNavigate();
-
-  const handleDisconnect = () => {
-    localStorage.removeItem("cart");
-    Cookies.remove("auth::token");
-    navigate("/sign-in", { replace: true });
-  };
-
+export function ViewProductDetailsDrawer({
+  children,
+}: ViewProductDetailsDrawerProps) {
   return (
-    <Drawer>
-      <DrawerTrigger>{children}</DrawerTrigger>
-      <DrawerContent>
-        <DrawerHeader>
-          <DrawerTitle>Você deseja realmente sair?</DrawerTitle>
-        </DrawerHeader>
-        <DrawerFooter>
-          <Button onClick={handleDisconnect}>Desconectar</Button>
-          <DrawerClose>
-            <Button variant="outline" className="w-full">
-              Cancelar
-            </Button>
-          </DrawerClose>
-        </DrawerFooter>
-      </DrawerContent>
-    </Drawer>
+    <>
+      <Drawer>
+        <DrawerTrigger>{children}</DrawerTrigger>
+        <DrawerContent>
+          <DrawerHeader>
+            <DrawerTitle>Are you absolutely sure?</DrawerTitle>
+          </DrawerHeader>
+          <DrawerFooter>
+            <Button>Submit</Button>
+            <DrawerClose>
+              <Button variant="outline">Cancelar</Button>
+            </DrawerClose>
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
+    </>
   );
 }
