@@ -3,7 +3,7 @@ import { MenuSheet } from "./sheets/menu-sheet";
 
 export function Header() {
   return (
-    <header className="bg-white h-14 flex items-center justify-between pr-4 pl-4">
+    <header className="bg-white sticky top-0 z-10 h-14 flex items-center justify-between pr-4 pl-4">
       <section className="flex items-center">
         <MenuSheet>
           <Menu />

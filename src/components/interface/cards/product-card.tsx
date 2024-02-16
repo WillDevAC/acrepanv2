@@ -84,11 +84,11 @@ function ListVariantProductCard({
           />
         </section>
         <section className="flex flex-col flex-1 pt-1">
-          <h1 className="font-bold text-lg w-2/3">{title}</h1>
-          <span className="text-gray-400 text-md w-[90%] pt-1">
+          <h1 className="flex items-start font-bold text-lg w-2/3">{title}</h1>
+          <span className="flex items-start text-gray-400 text-md w-[90%] pt-1">
             {description}
           </span>
-          <p className="pt-2 pb-3 text-orange-600 font-medium text-md">
+          <p className="flex items-start pt-2 pb-3 text-orange-600 font-medium text-md">
             {priceVarejo && formatPrice(priceVarejo.toString())}
           </p>
         </section>

@@ -4,7 +4,7 @@ import { ProductCard } from "@/components/interface/cards/product-card";
 import { useGetProducts } from "@/api/get-all-products";
 
 import { useState, useRef, useEffect } from "react";
-import { ViewProductDetailsDrawer } from "@/components/interface/drawer/confirm-disconnect";
+import { ViewProductDetailsDrawer } from "@/components/interface/drawer/view-product-drawer";
 
 const inactiveTabStyle =
   "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300";
@@ -72,16 +72,16 @@ export function HomePage() {
           listProducts &&
           listProducts.map((product: any) => (
             <ViewProductDetailsDrawer>
-                <ProductCard
-                  key={product.id}
-                  type="default"
-                  id={product.id}
-                  title={product.title}
-                  priceAtacado={product.priceAtacado}
-                  priceVarejo={product.priceAtacado}
-                  description={product.description}
-                  img={product.img.url}
-                />
+              <ProductCard
+                key={product.id}
+                type="default"
+                id={product.id}
+                title={product.title}
+                priceAtacado={product.priceAtacado}
+                priceVarejo={product.priceAtacado}
+                description={product.description}
+                img={product.img.url}
+              />
             </ViewProductDetailsDrawer>
           ))}
       </section>
@@ -122,17 +122,39 @@ export function HomePage() {
         {!isLoading &&
           listProducts &&
           listProducts.map((product: any) => (
-            <ProductCard
-              key={product.id}
-              type="list"
-              id={product.id}
-              title={product.title}
-              priceAtacado={product.priceAtacado}
-              priceVarejo={product.priceAtacado}
-              description={product.description}
-              img={product.img.url}
-            />
+            <ViewProductDetailsDrawer>
+              <ProductCard
+                key={product.id}
+                type="list"
+                id={product.id}
+                title={product.title}
+                priceAtacado={product.priceAtacado}
+                priceVarejo={product.priceAtacado}
+                description={product.description}
+                img={product.img.url}
+              />
+            </ViewProductDetailsDrawer>
           ))}
+          <h1>EAE</h1>
+          <h1>EAE</h1>
+          <h1>EAE</h1>
+          <h1>EAE</h1>
+          <h1>EAE</h1>
+          <h1>EAE</h1>
+          <h1>EAE</h1>
+          <h1>EAE</h1>
+          <h1>EAE</h1>
+          <h1>EAE</h1>
+          <h1>EAE</h1>
+          <h1>EAE</h1>
+          <h1>EAE</h1>
+          <h1>EAE</h1>
+          <h1>EAE</h1>
+          <h1>EAE</h1>
+          <h1>EAE</h1>
+          <h1>EAE</h1>
+          <h1>EAE</h1>
+          <h1>EAE</h1>
       </div>
     </main>
   );
@@ -140,7 +162,7 @@ export function HomePage() {
   return (
     <>
       <DeliveryShippingInfo time="15 à 20 minutos" isOpenCompany={true} />
-      <div className="bg-white overflow-x-auto w-full" aria-label="Tabs">
+      <div className="bg-white border-b-2 sticky top-14 z-10 overflow-x-auto w-full" aria-label="Tabs">
         <div className="flex" style={{ overflowX: "auto" }}>
           {renderTabButton("destaques", "Destaques")}
           {renderTabButton("Pão", "Pães")}
