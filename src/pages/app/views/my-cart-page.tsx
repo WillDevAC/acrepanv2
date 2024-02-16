@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 
 import { ProductCardCartItem } from "@/components/interface/cards/product-card-cart";
-import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import { ToastAction } from "@radix-ui/react-toast";
 
