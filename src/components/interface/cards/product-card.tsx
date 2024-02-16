@@ -2,6 +2,7 @@ import { Flame } from "lucide-react";
 import { Link } from "react-router-dom";
 import { formatPrice } from "@/lib/functions";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useState } from "react";
 
 interface ProductCardProps {
   id?: string;
@@ -19,7 +20,12 @@ function DefaultVariantProductCard({
   description,
   img,
   priceVarejo,
-}: ProductCardProps) {
+  loading,
+  setLoading,
+}: ProductCardProps & {
+  loading: boolean;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
   return (
     <Link
       to={`/product/${id}`}
@@ -27,7 +33,13 @@ function DefaultVariantProductCard({
     >
       <div className="flex">
         <section className="flex items-center justify-center flex-col p-3">
-          <img src={img} alt="Foto do produto" className="max-w-[65px]" />
+          {loading && <Skeleton className="h-12 w-12 rounded-full" />}
+          <img
+            src={img}
+            alt="Foto do produto"
+            className={`max-w-[65px] ${loading ? "hidden" : ""}`}
+            onLoad={() => setLoading(false)}
+          />
         </section>
         <section className="flex flex-col flex-1 pt-1">
           <h1 className="font-bold text-lg w-2/3">{title}</h1>
@@ -53,7 +65,12 @@ function ListVariantProductCard({
   description,
   img,
   priceVarejo,
-}: ProductCardProps) {
+  loading,
+  setLoading,
+}: ProductCardProps & {
+  loading: boolean;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
   return (
     <Link
       to={`/product/${id}`}
@@ -61,7 +78,13 @@ function ListVariantProductCard({
     >
       <div className="flex">
         <section className="flex items-center justify-center flex-col p-3">
-          <img src={img} alt="Foto do produto" className="max-w-[65px]" />
+          {loading && <Skeleton className="h-12 w-12 rounded-full" />}
+          <img
+            src={img}
+            alt="Foto do produto"
+            className={`max-w-[65px] ${loading ? "hidden" : ""}`}
+            onLoad={() => setLoading(false)}
+          />
         </section>
         <section className="flex flex-col flex-1 pt-1">
           <h1 className="font-bold text-lg w-2/3">{title}</h1>
@@ -92,14 +115,26 @@ function SkeletonVariantProductCard() {
     </div>
   );
 }
-
 export function ProductCard(props: ProductCardProps) {
   const { type } = props;
+  const [loading, setLoading] = useState<boolean>(true);
 
   return (
     <>
-      {type === "default" && <DefaultVariantProductCard {...props} />}
-      {type === "list" && <ListVariantProductCard {...props} />}
+      {type === "default" && (
+        <DefaultVariantProductCard
+          {...props}
+          loading={loading}
+          setLoading={setLoading}
+        />
+      )}
+      {type === "list" && (
+        <ListVariantProductCard
+          {...props}
+          loading={loading}
+          setLoading={setLoading}
+        />
+      )}
       {type === "skeleton" && <SkeletonVariantProductCard />}
     </>
   );
