@@ -1,17 +1,19 @@
-import { useGetProducts } from "@/api/get-all-products";
-import { ProductCard } from "@/components/interface/cards/product-card";
 import { DeliveryShippingInfo } from "@/components/interface/sections/delivery-shipping-info";
+
+import { ProductCard } from "@/components/interface/cards/product-card";
+import { useGetProducts } from "@/api/get-all-products";
+
 import { useState, useRef, useEffect } from "react";
 
-const activeTabStyle = "border-red-500 text-red-600";
 const inactiveTabStyle = "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300";
 const tabButtonStyle = "flex h-11 w-full items-center justify-center text-sm font-medium border-b-2";
+const activeTabStyle = "border-red-500 text-red-600";
 
 export function HomePage() {
-  const [activeTab, setActiveTab] = useState<string>("destaques");
-  const [productType, setProductType] = useState<string>("all"); 
   const containerRef = useRef<HTMLDivElement>(null);
 
+  const [activeTab, setActiveTab] = useState<string>("destaques");
+  const [productType, setProductType] = useState<string>("all");
 
   useEffect(() => {
     if (activeTab === "destaques") {
@@ -21,7 +23,12 @@ export function HomePage() {
     }
   }, [activeTab]);
 
-  const { data: listProducts, isLoading, isRefetching, isError } = useGetProducts(productType, activeTab);
+  const {
+    data: listProducts,
+    isLoading,
+    isRefetching,
+    isError,
+  } = useGetProducts(productType, activeTab);
 
   const handleTabClick = (tab: string) => {
     setActiveTab(tab);
@@ -30,7 +37,9 @@ export function HomePage() {
   const renderTabButton = (tabName: string, label: string) => (
     <button
       onClick={() => handleTabClick(tabName)}
-      className={`${activeTab === tabName ? activeTabStyle : inactiveTabStyle} ${tabButtonStyle}`}
+      className={`${
+        activeTab === tabName ? activeTabStyle : inactiveTabStyle
+      } ${tabButtonStyle}`}
     >
       {label}
     </button>
@@ -41,17 +50,23 @@ export function HomePage() {
       <div className="flex items-center justify-between w-full gap-1">
         <h1 className="font-bold text-xl text-gray-700">Destaques</h1>
       </div>
-      <section ref={containerRef} className="flex overflow-x-auto gap-2 mt-3 no-scrollbar">
-        {isLoading && !isRefetching && (
-          <ProductCard type="skeleton" />
-        )}
+      <section
+        ref={containerRef}
+        className="flex overflow-x-auto gap-2 mt-3 no-scrollbar"
+      >
+        {isLoading && !isRefetching && <ProductCard type="skeleton" />}
         {isError && (
-          <span className="text-md text-gray-500">Falha em obter os produtos em destaque.</span>
+          <span className="text-md text-gray-500">
+            Falha em obter os produtos em destaque.
+          </span>
         )}
         {!isLoading && listProducts.length <= 0 && (
-          <span className="text-md text-gray-500">Não há produtos em destaque.</span>
+          <span className="text-md text-gray-500">
+            Não há produtos em destaque.
+          </span>
         )}
-        {!isLoading && listProducts && (
+        {!isLoading &&
+          listProducts &&
           listProducts.map((product: any) => (
             <ProductCard
               key={product.id}
@@ -63,8 +78,7 @@ export function HomePage() {
               description={product.description}
               img={product.img.url}
             />
-          ))
-        )}
+          ))}
       </section>
     </main>
   );
@@ -72,21 +86,36 @@ export function HomePage() {
   const renderFilteredItems = () => (
     <main className="block p-3 pt-10">
       <div className="flex items-center justify-between w-full gap-1">
-        { activeTab === 'Pão' &&  <h1 className="font-bold text-xl text-gray-700">Mostrando todos os Pães</h1>}
-        { activeTab === 'Bolo' &&  <h1 className="font-bold text-xl text-gray-700">Mostrando todos os Bolos</h1>}
-        { activeTab === 'Rosca' &&  <h1 className="font-bold text-xl text-gray-700">Mostrando todas as Roscas</h1>}
+        {activeTab === "Pão" && (
+          <h1 className="font-bold text-xl text-gray-700">
+            Mostrando todos os Pães
+          </h1>
+        )}
+        {activeTab === "Bolo" && (
+          <h1 className="font-bold text-xl text-gray-700">
+            Mostrando todos os Bolos
+          </h1>
+        )}
+        {activeTab === "Rosca" && (
+          <h1 className="font-bold text-xl text-gray-700">
+            Mostrando todas as Roscas
+          </h1>
+        )}
       </div>
       <div className="flex flex-col mt-5 gap-2">
-      {isLoading && !isRefetching && (
-          <ProductCard type="skeleton" />
-        )}
+        {isLoading && !isRefetching && <ProductCard type="skeleton" />}
         {isError && (
-          <span className="text-md text-gray-500">Falha em obter os produtos.</span>
+          <span className="text-md text-gray-500">
+            Falha em obter os produtos.
+          </span>
         )}
         {!isLoading && listProducts.length <= 0 && (
-          <span className="text-md text-gray-500">Não há produtos cadastrados.</span>
+          <span className="text-md text-gray-500">
+            Não há produtos cadastrados.
+          </span>
         )}
-        {!isLoading && listProducts && (
+        {!isLoading &&
+          listProducts &&
           listProducts.map((product: any) => (
             <ProductCard
               key={product.id}
@@ -98,8 +127,7 @@ export function HomePage() {
               description={product.description}
               img={product.img.url}
             />
-          ))
-        )}
+          ))}
       </div>
     </main>
   );
@@ -116,10 +144,16 @@ export function HomePage() {
         </div>
       </div>
 
-      <div className={activeTab === "destaques" ? "block" : "hidden"} id="destaques">
+      <div
+        className={activeTab === "destaques" ? "block" : "hidden"}
+        id="destaques"
+      >
         {renderHighlightedItems()}
       </div>
-      <div className={activeTab !== "destaques" ? "block" : "hidden"} id="filteredItems">
+      <div
+        className={activeTab !== "destaques" ? "block" : "hidden"}
+        id="filteredItems"
+      >
         {renderFilteredItems()}
       </div>
     </>
